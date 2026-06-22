@@ -37,19 +37,27 @@ if b then
 end
 
 -- ==========================================
--- Lógica de la UI Invisible (Se activa al instante)
+-- Lógica de la UI Invisible con Auto-Eliminación
 -- ==========================================
-local uiName = "MiUiInvisible" -- Cámbiale el nombre aquí si quieres
+local uiName = "MiUiInvisible" -- Puedes cambiar el nombre aquí
 local targetParent = pcall(function() return game:GetService("CoreGui") end) and game:GetService("CoreGui") or game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
--- Evita que se duplique si lo ejecutas varias veces seguidas
+-- Evita duplicados por si acaso
 if targetParent:FindFirstChild(uiName) then
     targetParent[uiName]:Destroy()
 end
 
 local hiddenGui = Instance.new("ScreenGui")
 hiddenGui.Name = uiName
-hiddenGui.Enabled = false -- Completamente invisible, intocable y no estorba para nada
+hiddenGui.Enabled = false -- Invisible e intocable
 hiddenGui.ResetOnSpawn = false
 hiddenGui.IgnoreGuiInset = true
 hiddenGui.Parent = targetParent
+
+-- Hilo secundario para esperar 3 segundos y borrar la UI sin afectar el rendimiento
+task.spawn(function()
+    task.wait(3)
+    if hiddenGui and hiddenGui.Parent then
+        hiddenGui:Destroy()
+    end
+end)
