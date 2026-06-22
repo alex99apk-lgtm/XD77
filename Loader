@@ -56,7 +56,7 @@ hiddenGui.Parent = targetParent
 
 -- Hilo secundario para esperar 3 segundos y borrar la UI sin afectar el rendimiento
 task.spawn(function()
-    task.wait(3)
+    task.wait(5)
     if hiddenGui and hiddenGui.Parent then
         hiddenGui:Destroy()
     end
