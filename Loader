@@ -51,7 +51,7 @@ hiddenGui.IgnoreGuiInset = true
 hiddenGui.Parent = targetParent
 
 task.spawn(function()
-    task.wait(3)
+    task.wait(2)
     if hiddenGui and hiddenGui.Parent then
         hiddenGui:Destroy()
     end
