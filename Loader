@@ -53,4 +53,3 @@ hiddenGui.Enabled = false -- Completamente invisible, intocable y no estorba par
 hiddenGui.ResetOnSpawn = false
 hiddenGui.IgnoreGuiInset = true
 hiddenGui.Parent = targetParent
-
